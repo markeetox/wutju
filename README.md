@@ -1,45 +1,32 @@
-# Infinite WebGL Images
+# Animated Image Columns
 
-A tutorial explaining how to build an infinite scrolling gallery using WebGL with OGL and GLSL Shaders.
+An experimental layout where image columns get animated when a menu item is clicked. 
 
-![Final Result](cover.jpg)
+![Animated Image Columns](https://tympanus.net/codrops/wp-content/uploads/2019/05/AnimatedColumns_feat.jpg)
 
-[Article on Codrops](https://tympanus.net/codrops/?p=52634)
+[Article on Codrops](https://tympanus.net/codrops/?p=40486)
 
-[Demo](http://tympanus.net/Development/.../)
-
-## Installation
-
-Install dependencies:
-
-```
-npm install
-```
-
-Compile the code for development and start a local server:
-
-```
-npm start
-```
-
-Create the build:
-
-```
-npm run build
-```
+[Demo](https://tympanus.net/Development/AnimatedImageColumns/)
 
 ## Credits
 
-- https://unsplash.com/@planeteelevene
-- https://unsplash.com/@jayson_hinrichsen
+- [TweenMax](https://greensock.com/tweenmax) by Greensock
+- [bezier-easing](https://github.com/gre/bezier-easing) by Gaëtan Renaudeau
+- [imagesLoaded](https://imagesloaded.desandro.com/) by Dave DeSandro
+- [Charming](https://github.com/yuanqing/charming) by Yuan Qing
+- Images from [Unsplash.com](https://unsplash.com/) 
+
+## License
+This resource can be used freely if integrated or build upon in personal or commercial projects such as websites, web apps and web templates intended for sale. It is not allowed to take the resource "as-is" and sell it, redistribute, re-publish it, or sell "pluginized" versions of it. Free plugins built using this resource should have a visible mention and link to the original work. Always consider the licenses of all included libraries, scripts and images used.
 
 ## Misc
 
-Follow Luis Henrique Bizarro: [Website](https://bizar.ro/), [Twitter](https://twitter.com/lhbizarro), [GitHub](https://github.com/lhbizarro)
+Follow Codrops: [Twitter](http://www.twitter.com/codrops), [Facebook](http://www.facebook.com/codrops), [Google+](https://plus.google.com/101095823814290637419), [GitHub](https://github.com/codrops), [Pinterest](http://www.pinterest.com/codrops/), [Instagram](https://www.instagram.com/codropsss/)
 
-Follow Codrops: [Twitter](http://www.twitter.com/codrops), [Facebook](http://www.facebook.com/codrops), [GitHub](https://github.com/codrops), [Instagram](https://www.instagram.com/codropsss/)
 
-## License
-[MIT](LICENSE)
+[© Codrops 2019](http://www.codrops.com)
 
-Made with :blue_heart: by [Codrops](http://www.codrops.com)
+
+
+
+
