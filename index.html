@@ -7,21 +7,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #000;
+    --black: #050505;
     --white: #fff;
     --off: #f0f0f0;
     --purple: #7b2fff;
     --purple-bright: #9b4fff;
-    --purple-glow: rgba(123,47,255,0.3);
-    --gray: #777;
-    --gap: #111;
+    --purple-glow: rgba(123,47,255,0.4);
+    --gray: #a0a0a0;
+    --gap: 20px;
+    --radius: 24px;
+    --glass: rgba(10, 10, 10, 0.75);
+    --border: rgba(255, 255, 255, 0.08);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--black);
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('warehouse.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--white);
     font-family: 'Barlow', sans-serif;
     overflow-x: hidden;
@@ -180,20 +186,28 @@
   .bento {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 2px;
-    background: var(--gap);
-    border-bottom: 1px solid #181818;
+    gap: var(--gap);
+    padding: 0 36px 80px;
   }
 
   .cell {
-    background: var(--black);
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     padding: 40px 36px;
     overflow: hidden;
     position: relative;
-    transition: background 0.25s;
+    transition: all 0.3s ease;
   }
 
-  .cell:hover { background: #060606; }
+  .cell:hover {
+    background: rgba(20, 20, 20, 0.85);
+    border-color: rgba(123, 47, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    transform: translateY(-4px);
+  }
 
   .s8  { grid-column: span 8; }
   .s4  { grid-column: span 4; }
@@ -202,10 +216,10 @@
   .s4  { grid-column: span 4; }
   .s3  { grid-column: span 3; }
 
-  .c-purple { background: var(--purple) !important; }
-  .c-purple:hover { background: var(--purple-bright) !important; }
-  .c-white  { background: var(--white) !important; color: var(--black); }
-  .c-white:hover  { background: var(--off) !important; }
+  .c-purple { background: var(--purple) !important; border: none; }
+  .c-purple:hover { background: var(--purple-bright) !important; box-shadow: 0 0 30px var(--purple-glow); }
+  .c-white  { background: var(--white) !important; color: var(--black); border: none; }
+  .c-white:hover  { background: var(--off) !important; box-shadow: 0 0 30px rgba(255,255,255,0.15); }
 
   .lbl {
     font-size: 0.58rem;
@@ -251,8 +265,7 @@
 
   /* ─── PROJECTS ─────────────────────── */
   .proj-head {
-    padding: 48px 36px 24px;
-    border-bottom: 1px solid #111;
+    padding: 80px 36px 40px;
   }
 
   .proj-head .lbl { margin-bottom: 6px; }
@@ -262,32 +275,44 @@
   .proj-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 2px;
-    background: var(--gap);
-    border-bottom: 1px solid #181818;
+    gap: var(--gap);
+    padding: 0 36px 100px;
   }
 
   .proj {
-    background: var(--black);
-    padding: 36px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 44px;
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    transition: background 0.25s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s ease;
   }
 
-  .proj:hover { background: #050505; }
+  .proj:hover {
+    background: rgba(20, 20, 20, 0.85);
+    border-color: var(--purple);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    transform: translateY(-5px);
+  }
 
   .proj::after {
     content: '';
     position: absolute;
-    bottom: 0; left: 0;
-    width: 0; height: 2px;
-    background: var(--purple);
-    transition: width 0.4s ease;
+    top: 0; right: 0;
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, transparent 50%, var(--purple) 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
   }
 
-  .proj:hover::after { width: 100%; }
+  .proj:hover::after { opacity: 0.2; }
 
   .proj-n {
     font-family: 'Barlow Condensed', sans-serif;
@@ -393,10 +418,21 @@
   .rv.in { opacity: 1; transform: none; }
 
   /* responsive */
-  @media (max-width: 860px) {
+  @media (max-width: 992px) {
     .s8,.s4,.s5,.s7,.s3 { grid-column: span 12 !important; }
     .proj { grid-column: span 12 !important; }
+    .bento, .proj-grid { padding: 0 20px 60px; gap: 16px; }
+    .hero { padding: 0 20px 40px; }
+    .hero-title { font-size: clamp(60px, 15vw, 120px); }
     footer { flex-direction: column; text-align: center; }
+    .proj img { width: 120px !important; right: -10px !important; bottom: -10px !important; }
+  }
+
+  @media (max-width: 600px) {
+    .cell, .proj { padding: 30px 24px; }
+    .big { font-size: 3rem; }
+    .mid { font-size: 2rem; }
+    .num { font-size: 4rem; }
   }
 </style>
 </head>
@@ -486,39 +522,63 @@
 
   <div class="proj-grid rv">
 
-    <div class="proj" style="grid-column:span 7; border-right:2px solid var(--gap);">
+    <!-- CARLTOONS FEATURED -->
+    <div class="proj" style="grid-column:span 8; background: linear-gradient(45deg, rgba(123,47,255,0.15), transparent); cursor: default;">
+      <p class="proj-n">FEATURED</p>
+      <h3 class="D proj-name">CarlToons</h3>
+      <p class="proj-desc">Our creative animation and gaming hub. Home of <strong>The Pigeons</strong> — a browser-based tamagotchi-like game where you hatch, feed, and vibe with your on-chain bird.</p>
+      <span class="status"><span class="dot live"></span>Developing</span>
+      <img src="box.png" alt="" style="position:absolute; right:-20px; bottom:-20px; width:180px; opacity:0.6; pointer-events:none; filter: drop-shadow(0 0 20px var(--purple));">
+    </div>
+
+    <a href="https://opensea.io/collection/crazycarlcollectivenfts" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">01</p>
-      <h3 class="D proj-name">CarlDAO</h3>
-      <p class="proj-desc">On-chain governance for small collectives. Vote, propose, execute — permissionless on Base.</p>
-      <span class="status"><span class="dot live"></span>Live</span>
-    </div>
+      <h3 class="D proj-name">CCC Genesis</h3>
+      <p class="proj-desc">The original 10k collection that started the collective. Owning a Carl is your ticket into the inner circle.</p>
+      <span class="status"><span class="dot live"></span>OpenSea</span>
+    </a>
 
-    <div class="proj" style="grid-column:span 5;">
+    <a href="https://opensea.io/collection/nomoz-crypto-tats" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">02</p>
-      <h3 class="D proj-name">WildMint</h3>
-      <p class="proj-desc">No-code NFT launchpad. Traits, reveals, royalties — launched in minutes.</p>
-      <span class="status"><span class="dot build"></span>Building</span>
-    </div>
+      <h3 class="D proj-name">Crypto Tats</h3>
+      <p class="proj-desc">Digital ink for the metaverse. High-fidelity tattoo art as tradable on-chain assets on Ethereum.</p>
+      <span class="status"><span class="dot live"></span>OpenSea</span>
+    </a>
 
-    <div class="proj" style="grid-column:span 4; border-top:2px solid var(--gap); border-right:2px solid var(--gap);">
+    <a href="https://magiceden.io/ordinals/marketplace/bitcoin-crypto-tats" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">03</p>
-      <h3 class="D proj-name">Radar</h3>
-      <p class="proj-desc">Onchain analytics tool. Open sourced after 3k users.</p>
-      <span class="status"><span class="dot done"></span>Completed</span>
-    </div>
+      <h3 class="D proj-name">Bitcoin Tats</h3>
+      <p class="proj-desc">Digital ink on the mother chain. High-fidelity tattoo art as tradable Ordinals on Bitcoin.</p>
+      <span class="status"><span class="dot live"></span>Magic Eden</span>
+    </a>
 
-    <div class="proj" style="grid-column:span 4; border-top:2px solid var(--gap); border-right:2px solid var(--gap);">
+    <a href="https://opensea.io/collection/444-by-nomoz" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">04</p>
-      <h3 class="D proj-name">Carl Zines</h3>
-      <p class="proj-desc">Community zines on web3 culture, builder essays, degen philosophy.</p>
-      <span class="status"><span class="dot done"></span>Completed</span>
-    </div>
+      <h3 class="D proj-name">The 444</h3>
+      <p class="proj-desc">444 unique stories by NOMOZ. A deep dive into the lore and artistic expression of the collective.</p>
+      <span class="status"><span class="dot live"></span>OpenSea Collection</span>
+    </a>
 
-    <div class="proj" style="grid-column:span 4; border-top:2px solid var(--gap); background:#040404; display:flex; flex-direction:column; justify-content:flex-end;">
+    <a href="https://opensea.io/collection/ccc-records" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">05</p>
-      <h3 class="D proj-name" style="color:#1e1e1e;">???</h3>
-      <span class="status"><span class="dot build"></span>Watch This Space</span>
-    </div>
+      <h3 class="D proj-name">CCC Records</h3>
+      <p class="proj-desc">Web3 record label pushing the boundaries of music ownership and community-driven distribution.</p>
+      <span class="status"><span class="dot live"></span>On-Chain Music</span>
+    </a>
+
+    <a href="https://open.spotify.com/show/5WbWm8y3zT1OdvqKOKDqIb" target="_blank" class="proj" style="grid-column:span 4;">
+      <p class="proj-n">06</p>
+      <h3 class="D proj-name">CAC Show</h3>
+      <p class="proj-desc">The Crazy About Crypto podcast. Weekly deep dives into the alpha, the tech, and the culture of the space.</p>
+      <span class="status"><span class="dot live"></span>Spotify / Apple</span>
+    </a>
+
+    <a href="https://www.cryptotats.io/" target="_blank" class="proj" style="grid-column:span 4;">
+      <p class="proj-n">07</p>
+      <h3 class="D proj-name">Tats Gallery</h3>
+      <p class="proj-desc">A dedicated space to view the full gallery of Crypto Tats and explore the artistry behind the collection.</p>
+      <span class="status"><span class="dot live"></span>Visit Gallery</span>
+    </a>
 
   </div>
 </div>
@@ -528,8 +588,8 @@
   <h2 class="D cta-title">YOU'VE WATCHED.<br><span class="p">JOIN US.</span></h2>
   <p class="cta-sub">No application. No gatekeeping. Show up and build with us.</p>
   <div class="cta-btns">
-    <a href="#" class="btn btn-fill">Discord</a>
-    <a href="#" class="btn btn-out">Follow on X</a>
+    <a href="https://discord.gg/9ymqJxb7fu" target="_blank" class="btn btn-fill">Discord</a>
+    <a href="https://twitter.com/CrazyCryptoCarl" target="_blank" class="btn btn-out">Follow on X</a>
   </div>
 </div>
 
@@ -537,8 +597,9 @@
 <footer>
   <div class="flogo">WUT<span>JU</span></div>
   <div class="flinks">
-    <a href="#">Discord</a>
-    <a href="#">Twitter / X</a>
+    <a href="https://discord.gg/9ymqJxb7fu" target="_blank">Discord</a>
+    <a href="https://twitter.com/CrazyCryptoCarl" target="_blank">Twitter / X</a>
+    <a href="https://linktr.ee/CrazyCarlCollective" target="_blank">Linktree</a>
   </div>
   <p class="fcopy">© Crazy Carls Collective · Built by Carls</p>
 </footer>
