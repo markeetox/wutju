@@ -1,70 +1,554 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch Us then Join Us</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: url('warehouse.jpg') no-repeat center bottom/cover;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            padding-bottom: 5vh;
-        }
-        .box {
-            max-width: 700px;
-            width: 60vw;
-            cursor: pointer;
-            transition: transform 0.2s ease-in-out;
-        }
-        .box:active {
-            transform: scale(1.4);
-        }
-        @media (max-width: 768px) {
-            body {
-                background-size: cover;
-            }
-            .box {
-                width: 70vw;
-                max-width: 500px;
-            }
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WUTJU — Crazy Carls</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000;
+    --white: #fff;
+    --off: #f0f0f0;
+    --purple: #7b2fff;
+    --purple-bright: #9b4fff;
+    --purple-glow: rgba(123,47,255,0.3);
+    --gray: #777;
+    --gap: #111;
+  }
 
-        
-    </style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+  }
+
+  .D { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.01em; }
+
+  /* ─── HERO ─────────────────────────── */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 36px 52px;
+    position: relative;
+    border-bottom: 1px solid #181818;
+    overflow: hidden;
+  }
+
+  .hero-ghost {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(140px, 28vw, 320px);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.035);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    opacity: 0;
+    animation: up 0.7s 0.1s ease forwards;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 26px;
+    height: 1px;
+    background: var(--purple);
+    flex-shrink: 0;
+  }
+
+  .hero-title {
+    font-size: clamp(76px, 18vw, 210px);
+    opacity: 0;
+    animation: up 0.7s 0.25s ease forwards;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-title .p { color: var(--purple); }
+
+  .hdivider {
+    width: 100%;
+    height: 1px;
+    background: #181818;
+    margin: 36px 0;
+    opacity: 0;
+    animation: up 0.7s 0.4s ease forwards;
+  }
+
+  .hero-foot {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: up 0.7s 0.55s ease forwards;
+  }
+
+  .hero-desc {
+    font-size: clamp(0.88rem, 1.3vw, 1.05rem);
+    line-height: 1.75;
+    color: var(--gray);
+    max-width: 420px;
+  }
+
+  .hero-desc strong { color: var(--white); font-weight: 600; }
+
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 13px 30px;
+    display: inline-block;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-fill { background: var(--purple); color: #fff; }
+  .btn-fill:hover { background: var(--purple-bright); box-shadow: 0 0 28px var(--purple-glow); transform: translateY(-2px); }
+
+  .btn-out { background: transparent; color: var(--white); border: 1px solid #222; }
+  .btn-out:hover { border-color: var(--purple); color: var(--purple); transform: translateY(-2px); }
+
+  @keyframes up {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── TICKER ───────────────────────── */
+  .ticker {
+    border-bottom: 1px solid #181818;
+    overflow: hidden;
+    padding: 13px 0;
+  }
+
+  .ticker-track {
+    display: flex;
+    animation: tick 22s linear infinite;
+    white-space: nowrap;
+  }
+
+  .t { padding: 0 36px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gray); flex-shrink: 0; }
+  .t.p { color: var(--purple); padding: 0 8px; }
+
+  @keyframes tick {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ─── BENTO ────────────────────────── */
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2px;
+    background: var(--gap);
+    border-bottom: 1px solid #181818;
+  }
+
+  .cell {
+    background: var(--black);
+    padding: 40px 36px;
+    overflow: hidden;
+    position: relative;
+    transition: background 0.25s;
+  }
+
+  .cell:hover { background: #060606; }
+
+  .s8  { grid-column: span 8; }
+  .s4  { grid-column: span 4; }
+  .s5  { grid-column: span 5; }
+  .s7  { grid-column: span 7; }
+  .s4  { grid-column: span 4; }
+  .s3  { grid-column: span 3; }
+
+  .c-purple { background: var(--purple) !important; }
+  .c-purple:hover { background: var(--purple-bright) !important; }
+  .c-white  { background: var(--white) !important; color: var(--black); }
+  .c-white:hover  { background: var(--off) !important; }
+
+  .lbl {
+    font-size: 0.58rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .c-purple .lbl { color: rgba(255,255,255,0.42); }
+  .c-white  .lbl { color: rgba(0,0,0,0.38); }
+
+  .big   { font-size: clamp(2.8rem, 5.5vw, 5.2rem); }
+  .mid   { font-size: clamp(1.8rem, 2.8vw, 2.8rem); }
+
+  .body {
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: var(--gray);
+    margin-top: 14px;
+  }
+
+  .c-white  .body { color: #444; }
+  .c-purple .body { color: rgba(255,255,255,0.65); }
+
+  .num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-size: clamp(4rem, 8.5vw, 8rem);
+  }
+
+  .num.purple { color: var(--purple); }
+  .num.white  { color: var(--white); }
+  .num.black  { color: var(--black); }
+
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .pill  { border: 1px solid #1e1e1e; padding: 4px 13px; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); transition: all 0.2s; }
+  .pill:hover { border-color: var(--purple); color: var(--purple); }
+  .c-purple .pill { border-color: rgba(255,255,255,0.22); color: rgba(255,255,255,0.65); }
+
+  /* ─── PROJECTS ─────────────────────── */
+  .proj-head {
+    padding: 48px 36px 24px;
+    border-bottom: 1px solid #111;
+  }
+
+  .proj-head .lbl { margin-bottom: 6px; }
+
+  .sec-title { font-size: clamp(3rem, 7vw, 7rem); }
+
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2px;
+    background: var(--gap);
+    border-bottom: 1px solid #181818;
+  }
+
+  .proj {
+    background: var(--black);
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.25s;
+  }
+
+  .proj:hover { background: #050505; }
+
+  .proj::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--purple);
+    transition: width 0.4s ease;
+  }
+
+  .proj:hover::after { width: 100%; }
+
+  .proj-n {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: #222;
+    margin-bottom: 26px;
+  }
+
+  .proj-name {
+    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+    margin-bottom: 12px;
+    transition: color 0.2s;
+  }
+
+  .proj:hover .proj-name { color: var(--purple); }
+
+  .proj-desc {
+    font-size: 0.77rem;
+    line-height: 1.7;
+    color: var(--gray);
+    max-width: 360px;
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 22px;
+    font-size: 0.57rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .dot { width: 5px; height: 5px; border-radius: 50%; }
+  .live   { background: var(--purple); animation: bl 2s infinite; }
+  .build  { background: #fff; }
+  .done   { background: #2a2a2a; }
+
+  @keyframes bl { 0%,100%{opacity:1}50%{opacity:0.2} }
+
+  /* ─── CTA ──────────────────────────── */
+  .cta {
+    padding: clamp(80px,12vw,160px) 36px;
+    text-align: center;
+    border-bottom: 1px solid #181818;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 55% 45% at 50% 50%, rgba(123,47,255,0.09) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-title { font-size: clamp(52px, 10.5vw, 130px); position: relative; z-index: 2; }
+  .cta-title .p { color: var(--purple); }
+
+  .cta-sub {
+    font-size: 0.8rem;
+    color: var(--gray);
+    max-width: 360px;
+    margin: 26px auto 44px;
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2; }
+
+  /* ─── FOOTER ───────────────────────── */
+  footer {
+    padding: 32px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .flogo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .flogo span { color: var(--purple); }
+
+  .flinks { display: flex; gap: 26px; flex-wrap: wrap; }
+  .flinks a { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .flinks a:hover { color: var(--purple); }
+
+  .fcopy { font-size: 0.58rem; color: #252525; letter-spacing: 0.08em; }
+
+  /* scroll reveal */
+  .rv { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .rv.in { opacity: 1; transform: none; }
+
+  /* responsive */
+  @media (max-width: 860px) {
+    .s8,.s4,.s5,.s7,.s3 { grid-column: span 12 !important; }
+    .proj { grid-column: span 12 !important; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
 </head>
 <body>
-    <img src="box.png" alt="Box" class="box" onclick="shakeBox()">
-    <script>
-        function shakeBox() {
-            const box = document.querySelector('.box');
-            box.style.animation = 'shakeTilt 0.5s';
-            setTimeout(() => {
-                box.style.animation = '';
-            }, 500);
-        }
-        
-        // Shake and tilt animation keyframes
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes shakeTilt {
-                0% { transform: rotate(0deg) translateX(0); }
-                15% { transform: rotate(-5deg) translateX(-5px); }
-                30% { transform: rotate(5deg) translateX(5px); }
-                45% { transform: rotate(-3deg) translateX(-3px); }
-                60% { transform: rotate(3deg) translateX(3px); }
-                75% { transform: rotate(-2deg) translateX(-2px); }
-                100% { transform: rotate(0deg) translateX(0); }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ghost">WUTJU</div>
+  <p class="eyebrow">Crazy Carls Collective · Web3</p>
+  <h1 class="D hero-title">WATCH<br>US<span class="p">.</span></h1>
+  <div class="hdivider"></div>
+  <div class="hero-foot">
+    <p class="hero-desc">A collective of <strong>builders, creators & degens</strong> building in public. Watch us. Then join us.</p>
+    <div class="btns">
+      <a href="#projects" class="btn btn-fill">Our Work</a>
+      <a href="#join" class="btn btn-out">Join the Carls</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="t">Watch Us Then Join Us</span><span class="t p">✦</span>
+    <span class="t">Crazy Carls</span><span class="t p">✦</span>
+    <span class="t">WUTJU.COM</span><span class="t p">✦</span>
+    <span class="t">Web3 Collective</span><span class="t p">✦</span>
+    <span class="t">Build in Public</span><span class="t p">✦</span>
+    <span class="t">Ship. Learn. Repeat.</span><span class="t p">✦</span>
+    <span class="t">Watch Us Then Join Us</span><span class="t p">✦</span>
+    <span class="t">Crazy Carls</span><span class="t p">✦</span>
+    <span class="t">WUTJU.COM</span><span class="t p">✦</span>
+    <span class="t">Web3 Collective</span><span class="t p">✦</span>
+    <span class="t">Build in Public</span><span class="t p">✦</span>
+    <span class="t">Ship. Learn. Repeat.</span><span class="t p">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT BENTO -->
+<div class="bento rv">
+
+  <div class="cell s8">
+    <span class="lbl">Manifesto</span>
+    <h2 class="D big">No Gates.<br>No VC.<br>Just Build.</h2>
+    <p class="body">A decentralized crew building in public — wins, losses, and everything in between. Community owned. Work proves it.</p>
+    <div class="pills">
+      <span class="pill">Permissionless</span>
+      <span class="pill">On-Chain</span>
+      <span class="pill">Open Source</span>
+      <span class="pill">Community Owned</span>
+    </div>
+  </div>
+
+  <div class="cell c-purple s4" style="display:flex;flex-direction:column;justify-content:space-between;">
+    <span class="lbl">Shipped</span>
+    <div>
+      <div class="num black">47+</div>
+      <p class="body">Projects built through bull and bear markets alike.</p>
+    </div>
+  </div>
+
+  <div class="cell c-white s5">
+    <span class="lbl">The Name</span>
+    <h3 class="D mid">W.U.T.J.U</h3>
+    <p class="body">Watch Us Then Join Us. We build first. The door is always open.</p>
+  </div>
+
+  <div class="cell s4" style="display:flex;flex-direction:column;justify-content:flex-end;">
+    <div class="num purple">0</div>
+    <span class="lbl" style="margin-top:8px;margin-bottom:0;">VCs. Ever.</span>
+  </div>
+
+  <div class="cell s3">
+    <span class="lbl">Chain</span>
+    <div class="num white" style="font-size:clamp(2.5rem,4.5vw,4.5rem);">ALL</div>
+    <p class="body" style="font-size:0.68rem;">ETH · Base · Solana · whatever</p>
+  </div>
+
+</div>
+
+<!-- PROJECTS -->
+<div id="projects">
+  <div class="proj-head rv">
+    <span class="lbl">— Work</span>
+    <h2 class="D sec-title">Projects</h2>
+  </div>
+
+  <div class="proj-grid rv">
+
+    <div class="proj" style="grid-column:span 7; border-right:2px solid var(--gap);">
+      <p class="proj-n">01</p>
+      <h3 class="D proj-name">CarlDAO</h3>
+      <p class="proj-desc">On-chain governance for small collectives. Vote, propose, execute — permissionless on Base.</p>
+      <span class="status"><span class="dot live"></span>Live</span>
+    </div>
+
+    <div class="proj" style="grid-column:span 5;">
+      <p class="proj-n">02</p>
+      <h3 class="D proj-name">WildMint</h3>
+      <p class="proj-desc">No-code NFT launchpad. Traits, reveals, royalties — launched in minutes.</p>
+      <span class="status"><span class="dot build"></span>Building</span>
+    </div>
+
+    <div class="proj" style="grid-column:span 4; border-top:2px solid var(--gap); border-right:2px solid var(--gap);">
+      <p class="proj-n">03</p>
+      <h3 class="D proj-name">Radar</h3>
+      <p class="proj-desc">Onchain analytics tool. Open sourced after 3k users.</p>
+      <span class="status"><span class="dot done"></span>Completed</span>
+    </div>
+
+    <div class="proj" style="grid-column:span 4; border-top:2px solid var(--gap); border-right:2px solid var(--gap);">
+      <p class="proj-n">04</p>
+      <h3 class="D proj-name">Carl Zines</h3>
+      <p class="proj-desc">Community zines on web3 culture, builder essays, degen philosophy.</p>
+      <span class="status"><span class="dot done"></span>Completed</span>
+    </div>
+
+    <div class="proj" style="grid-column:span 4; border-top:2px solid var(--gap); background:#040404; display:flex; flex-direction:column; justify-content:flex-end;">
+      <p class="proj-n">05</p>
+      <h3 class="D proj-name" style="color:#1e1e1e;">???</h3>
+      <span class="status"><span class="dot build"></span>Watch This Space</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta rv" id="join">
+  <h2 class="D cta-title">YOU'VE WATCHED.<br><span class="p">JOIN US.</span></h2>
+  <p class="cta-sub">No application. No gatekeeping. Show up and build with us.</p>
+  <div class="cta-btns">
+    <a href="#" class="btn btn-fill">Discord</a>
+    <a href="#" class="btn btn-out">Follow on X</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">WUT<span>JU</span></div>
+  <div class="flinks">
+    <a href="#">Discord</a>
+    <a href="#">Twitter / X</a>
+  </div>
+  <p class="fcopy">© Crazy Carls Collective · Built by Carls</p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>
