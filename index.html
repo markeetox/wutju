@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WUTJU — Crazy Carls</title>
-  <link rel="icon" type="image/png" href="wutju.png">
+<link rel="icon" type="image/png" href="wutju.png">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -34,7 +34,6 @@
     overflow-x: hidden;
   }
 
-  /* grain overlay */
   body::before {
     content: '';
     position: fixed;
@@ -151,11 +150,12 @@
     border: none;
   }
 
-  .btn-fill { background: var(--purple); color: #fff; }
-  .btn-fill:hover { background: var(--purple-bright); box-shadow: 0 0 28px var(--purple-glow); transform: translateY(-2px); }
-
-  .btn-out { background: transparent; color: var(--white); border: 1px solid #222; }
-  .btn-out:hover { border-color: var(--purple); color: var(--purple); transform: translateY(-2px); }
+  .btn-fill  { background: var(--purple); color: #fff; border-radius: 4px; }
+  .btn-fill:hover  { background: var(--purple-bright); box-shadow: 0 0 28px var(--purple-glow); transform: translateY(-2px); }
+  .btn-out   { background: transparent; color: var(--white); border: 1px solid #333; border-radius: 4px; }
+  .btn-out:hover   { border-color: var(--purple); color: var(--purple); transform: translateY(-2px); }
+  .btn-white { background: #fff; color: #000; border-radius: 4px; }
+  .btn-white:hover { background: var(--off); box-shadow: 0 0 20px rgba(255,255,255,0.2); transform: translateY(-2px); }
 
   @keyframes up {
     from { opacity: 0; transform: translateY(28px); }
@@ -163,25 +163,11 @@
   }
 
   /* ─── TICKER ───────────────────────── */
-  .ticker {
-    border-bottom: 1px solid #181818;
-    overflow: hidden;
-    padding: 13px 0;
-  }
-
-  .ticker-track {
-    display: flex;
-    animation: tick 22s linear infinite;
-    white-space: nowrap;
-  }
-
+  .ticker { border-bottom: 1px solid #181818; overflow: hidden; padding: 13px 0; }
+  .ticker-track { display: flex; animation: tick 22s linear infinite; white-space: nowrap; }
   .t { padding: 0 36px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gray); flex-shrink: 0; }
   .t.p { color: var(--purple); padding: 0 8px; }
-
-  @keyframes tick {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
+  @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* ─── BENTO ────────────────────────── */
   .bento {
@@ -204,18 +190,17 @@
   }
 
   .cell:hover {
-    background: rgba(20, 20, 20, 0.85);
-    border-color: rgba(123, 47, 255, 0.3);
+    background: rgba(20,20,20,0.85);
+    border-color: rgba(123,47,255,0.3);
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     transform: translateY(-4px);
   }
 
-  .s8  { grid-column: span 8; }
-  .s4  { grid-column: span 4; }
-  .s5  { grid-column: span 5; }
-  .s7  { grid-column: span 7; }
-  .s4  { grid-column: span 4; }
-  .s3  { grid-column: span 3; }
+  .s8 { grid-column: span 8; }
+  .s4 { grid-column: span 4; }
+  .s5 { grid-column: span 5; }
+  .s7 { grid-column: span 7; }
+  .s3 { grid-column: span 3; }
 
   .c-purple { background: var(--purple) !important; border: none; }
   .c-purple:hover { background: var(--purple-bright) !important; box-shadow: 0 0 30px var(--purple-glow); }
@@ -234,50 +219,33 @@
   .c-purple .lbl { color: rgba(255,255,255,0.42); }
   .c-white  .lbl { color: rgba(0,0,0,0.38); }
 
-  .big   { font-size: clamp(2.8rem, 5.5vw, 5.2rem); }
-  .mid   { font-size: clamp(1.8rem, 2.8vw, 2.8rem); }
+  .big { font-size: clamp(2.8rem, 5.5vw, 5.2rem); }
+  .mid { font-size: clamp(1.8rem, 2.8vw, 2.8rem); }
 
-  .body {
-    font-size: 0.8rem;
-    line-height: 1.8;
-    color: var(--gray);
-    margin-top: 14px;
-  }
-
+  .body { font-size: 0.8rem; line-height: 1.8; color: var(--gray); margin-top: 14px; }
   .c-white  .body { color: #444; }
   .c-purple .body { color: rgba(255,255,255,0.65); }
 
-  .num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    font-size: clamp(4rem, 8.5vw, 8rem);
-  }
-
+  .num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; line-height: 1; letter-spacing: -0.02em; font-size: clamp(4rem, 8.5vw, 8rem); }
   .num.purple { color: var(--purple); }
   .num.white  { color: var(--white); }
   .num.black  { color: var(--black); }
 
   .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
-  .pill  { border: 1px solid #1e1e1e; padding: 4px 13px; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); transition: all 0.2s; }
+  .pill  { border: 1px solid #1e1e1e; padding: 4px 13px; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); transition: all 0.2s; border-radius: 2px; }
   .pill:hover { border-color: var(--purple); color: var(--purple); }
   .c-purple .pill { border-color: rgba(255,255,255,0.22); color: rgba(255,255,255,0.65); }
 
   /* ─── PROJECTS ─────────────────────── */
-  .proj-head {
-    padding: 80px 36px 40px;
-  }
-
+  .proj-head { padding: 80px 36px 40px; }
   .proj-head .lbl { margin-bottom: 6px; }
-
   .sec-title { font-size: clamp(3rem, 7vw, 7rem); }
 
   .proj-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: var(--gap);
-    padding: 0 36px 100px;
+    padding: 0 36px 60px;
   }
 
   .proj {
@@ -297,7 +265,7 @@
   }
 
   .proj:hover {
-    background: rgba(20, 20, 20, 0.85);
+    background: rgba(20,20,20,0.85);
     border-color: var(--purple);
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     transform: translateY(-5px);
@@ -315,28 +283,11 @@
 
   .proj:hover::after { opacity: 0.2; }
 
-  .proj-n {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    color: #222;
-    margin-bottom: 26px;
-  }
-
-  .proj-name {
-    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
-    margin-bottom: 12px;
-    transition: color 0.2s;
-  }
-
+  .proj-n { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em; color: #2a2a2a; margin-bottom: 26px; }
+  .proj-name { font-size: clamp(1.8rem, 3.5vw, 3.2rem); margin-bottom: 12px; transition: color 0.2s; }
   .proj:hover .proj-name { color: var(--purple); }
-
-  .proj-desc {
-    font-size: 0.77rem;
-    line-height: 1.7;
-    color: var(--gray);
-    max-width: 360px;
-  }
+  .proj-desc { font-size: 0.77rem; line-height: 1.7; color: var(--gray); max-width: 360px; }
+  .proj-desc strong { color: var(--white); }
 
   .status {
     display: inline-flex;
@@ -350,17 +301,308 @@
   }
 
   .dot { width: 5px; height: 5px; border-radius: 50%; }
-  .live   { background: var(--purple); animation: bl 2s infinite; }
-  .build  { background: #fff; }
-  .done   { background: #2a2a2a; }
-
+  .live  { background: var(--purple); animation: bl 2s infinite; }
+  .build { background: #fff; }
+  .done  { background: #2a2a2a; }
   @keyframes bl { 0%,100%{opacity:1}50%{opacity:0.2} }
+
+  /* ─── CARLTOONS EXPANDED ───────────── */
+  .carltoons-section {
+    padding: 0 36px 60px;
+  }
+
+  .carltoons-hero {
+    background: linear-gradient(135deg, rgba(123,47,255,0.18) 0%, rgba(10,10,10,0.9) 60%);
+    border: 1px solid rgba(123,47,255,0.25);
+    border-radius: var(--radius);
+    padding: 56px 52px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: var(--gap);
+  }
+
+  .carltoons-hero::before {
+    content: 'CARLTOONS';
+    position: absolute;
+    right: -20px;
+    bottom: -30px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(80px, 12vw, 160px);
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(123,47,255,0.08);
+    pointer-events: none;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .carltoons-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ct-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(123,47,255,0.2);
+    border: 1px solid rgba(123,47,255,0.4);
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c4a0ff;
+    margin-bottom: 20px;
+  }
+
+  .ct-badge .dot { background: #c4a0ff; animation: bl 2s infinite; }
+
+  .ct-title {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    margin-bottom: 16px;
+    line-height: 0.92;
+  }
+
+  .ct-title .p { color: var(--purple); }
+
+  .ct-desc {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--gray);
+    margin-bottom: 28px;
+    max-width: 440px;
+  }
+
+  .ct-desc strong { color: var(--white); }
+
+  .ct-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .ct-feat {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: all 0.2s;
+  }
+
+  .ct-feat:hover {
+    background: rgba(123,47,255,0.08);
+    border-color: rgba(123,47,255,0.25);
+  }
+
+  .ct-feat-icon { font-size: 1.3rem; margin-bottom: 8px; }
+  .ct-feat-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .ct-feat-desc { font-size: 0.68rem; color: var(--gray); line-height: 1.5; }
+
+  /* PIGEON CAROUSEL */
+  .pigeon-side { position: relative; }
+
+  .pigeon-showcase {
+    position: relative;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pigeon-card {
+    position: absolute;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid rgba(123,47,255,0.3);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    background: #0a0a0a;
+  }
+
+  .pigeon-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* stacking layout */
+  .pigeon-card.pos-center {
+    width: 180px; height: 220px;
+    z-index: 5;
+    transform: translateX(0) rotate(0deg) scale(1.05);
+    border-color: rgba(123,47,255,0.7);
+    box-shadow: 0 0 40px rgba(123,47,255,0.3), 0 12px 40px rgba(0,0,0,0.6);
+  }
+
+  .pigeon-card.pos-left1 {
+    width: 150px; height: 185px;
+    z-index: 4;
+    transform: translateX(-155px) rotate(-6deg) scale(0.97);
+    opacity: 0.85;
+  }
+
+  .pigeon-card.pos-left2 {
+    width: 130px; height: 160px;
+    z-index: 3;
+    transform: translateX(-265px) rotate(-10deg) scale(0.9);
+    opacity: 0.55;
+  }
+
+  .pigeon-card.pos-right1 {
+    width: 150px; height: 185px;
+    z-index: 4;
+    transform: translateX(155px) rotate(6deg) scale(0.97);
+    opacity: 0.85;
+  }
+
+  .pigeon-card.pos-right2 {
+    width: 130px; height: 160px;
+    z-index: 3;
+    transform: translateX(265px) rotate(10deg) scale(0.9);
+    opacity: 0.55;
+  }
+
+  .pigeon-card.pos-far-left {
+    width: 110px; height: 135px;
+    z-index: 2;
+    transform: translateX(-355px) rotate(-14deg) scale(0.82);
+    opacity: 0.25;
+  }
+
+  .pigeon-card.pos-far-right {
+    width: 110px; height: 135px;
+    z-index: 2;
+    transform: translateX(355px) rotate(14deg) scale(0.82);
+    opacity: 0.25;
+  }
+
+  .pigeon-label {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .pigeon-label .plabel {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c4a0ff;
+  }
+
+  .pigeon-label .psub {
+    font-size: 0.62rem;
+    color: var(--gray);
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+  }
+
+  .pigeon-dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 14px;
+  }
+
+  .pdot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #222;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .pdot.active { background: var(--purple); transform: scale(1.3); }
+
+  /* game mechanic cards row */
+  .ct-mechanics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+    margin-top: var(--gap);
+  }
+
+  .mechanic {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 30px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mechanic:hover {
+    border-color: rgba(123,47,255,0.4);
+    box-shadow: 0 0 30px rgba(123,47,255,0.1);
+    transform: translateY(-4px);
+  }
+
+  .mechanic::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--purple), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .mechanic:hover::before { opacity: 1; }
+
+  .mech-icon {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+    display: block;
+    filter: drop-shadow(0 0 8px rgba(123,47,255,0.4));
+  }
+
+  .mech-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+
+  .mech-desc {
+    font-size: 0.75rem;
+    line-height: 1.75;
+    color: var(--gray);
+  }
+
+  .mech-tag {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--purple);
+    border: 1px solid rgba(123,47,255,0.3);
+    padding: 3px 12px;
+    border-radius: 100px;
+  }
 
   /* ─── CTA ──────────────────────────── */
   .cta {
     padding: clamp(80px,12vw,160px) 36px;
     text-align: center;
-    border-bottom: 1px solid #181818;
+    border-top: 1px solid #181818;
     position: relative;
     overflow: hidden;
   }
@@ -376,42 +618,16 @@
   .cta-title { font-size: clamp(52px, 10.5vw, 130px); position: relative; z-index: 2; }
   .cta-title .p { color: var(--purple); }
 
-  .cta-sub {
-    font-size: 0.8rem;
-    color: var(--gray);
-    max-width: 360px;
-    margin: 26px auto 44px;
-    line-height: 1.8;
-    position: relative;
-    z-index: 2;
-  }
-
+  .cta-sub { font-size: 0.8rem; color: var(--gray); max-width: 360px; margin: 26px auto 44px; line-height: 1.8; position: relative; z-index: 2; }
   .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2; }
 
   /* ─── FOOTER ───────────────────────── */
-  footer {
-    padding: 32px 36px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .flogo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 1.3rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
+  footer { padding: 32px 36px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-top: 1px solid #181818; }
+  .flogo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.3rem; letter-spacing: 0.06em; text-transform: uppercase; }
   .flogo span { color: var(--purple); }
-
   .flinks { display: flex; gap: 26px; flex-wrap: wrap; }
   .flinks a { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
   .flinks a:hover { color: var(--purple); }
-
   .fcopy { font-size: 0.58rem; color: #252525; letter-spacing: 0.08em; }
 
   /* scroll reveal */
@@ -426,14 +642,23 @@
     .hero { padding: 0 20px 40px; }
     .hero-title { font-size: clamp(60px, 15vw, 120px); }
     footer { flex-direction: column; text-align: center; }
-    .proj img { width: 120px !important; right: -10px !important; bottom: -10px !important; }
+    .carltoons-section { padding: 0 20px 60px; }
+    .carltoons-inner { grid-template-columns: 1fr; gap: 40px; }
+    .ct-features { grid-template-columns: 1fr 1fr; }
+    .pigeon-showcase { height: 260px; }
+    .pigeon-card.pos-center { width: 140px; height: 172px; }
+    .pigeon-card.pos-left1  { width: 115px; height: 142px; transform: translateX(-120px) rotate(-6deg); }
+    .pigeon-card.pos-right1 { width: 115px; height: 142px; transform: translateX(120px) rotate(6deg); }
+    .pigeon-card.pos-left2,.pigeon-card.pos-right2,
+    .pigeon-card.pos-far-left,.pigeon-card.pos-far-right { display: none; }
+    .ct-mechanics { grid-template-columns: 1fr; }
+    .proj-head { padding: 60px 20px 32px; }
+    .carltoons-hero { padding: 36px 28px; }
   }
 
   @media (max-width: 600px) {
     .cell, .proj { padding: 30px 24px; }
-    .big { font-size: 3rem; }
-    .mid { font-size: 2rem; }
-    .num { font-size: 4rem; }
+    .ct-features { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -473,8 +698,7 @@
 </div>
 
 <!-- ABOUT BENTO -->
-<div class="bento rv">
-
+<div class="bento rv" style="padding-top: 60px;">
   <div class="cell s8">
     <span class="lbl">Manifesto</span>
     <h2 class="D big">No Gates.<br>No VC.<br>Just Build.</h2>
@@ -486,7 +710,6 @@
       <span class="pill">Community Owned</span>
     </div>
   </div>
-
   <div class="cell c-purple s4" style="display:flex;flex-direction:column;justify-content:space-between;">
     <span class="lbl">Shipped</span>
     <div>
@@ -494,24 +717,20 @@
       <p class="body">Projects built through bull and bear markets alike.</p>
     </div>
   </div>
-
   <div class="cell c-white s5">
     <span class="lbl">The Name</span>
     <h3 class="D mid">W.U.T.J.U</h3>
     <p class="body">Watch Us Then Join Us. We build first. The door is always open.</p>
   </div>
-
   <div class="cell s4" style="display:flex;flex-direction:column;justify-content:flex-end;">
     <div class="num purple">0</div>
     <span class="lbl" style="margin-top:8px;margin-bottom:0;">VCs. Ever.</span>
   </div>
-
   <div class="cell s3">
     <span class="lbl">Chain</span>
     <div class="num white" style="font-size:clamp(2.5rem,4.5vw,4.5rem);">ALL</div>
     <p class="body" style="font-size:0.68rem;">ETH · Base · Solana · whatever</p>
   </div>
-
 </div>
 
 <!-- PROJECTS -->
@@ -522,67 +741,155 @@
   </div>
 
   <div class="proj-grid rv">
-
-    <!-- CARLTOONS FEATURED -->
-    <div class="proj" style="grid-column:span 8; background: linear-gradient(45deg, rgba(123,47,255,0.15), transparent); cursor: default;">
-      <p class="proj-n">FEATURED</p>
-      <h3 class="D proj-name">CarlToons</h3>
-      <p class="proj-desc">Our creative animation and gaming hub. Home of <strong>The Pigeons</strong> — a browser-based tamagotchi-like game where you hatch, feed, and vibe with your on-chain bird.</p>
-      <span class="status"><span class="dot live"></span>Developing</span>
-      <img src="box.png" alt="" style="position:absolute; right:-20px; bottom:-20px; width:180px; opacity:0.6; pointer-events:none; filter: drop-shadow(0 0 20px var(--purple));">
-    </div>
-
     <a href="https://opensea.io/collection/crazycarlcollectivenfts" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">01</p>
       <h3 class="D proj-name">CCC Genesis</h3>
       <p class="proj-desc">The original 10k collection that started the collective. Owning a Carl is your ticket into the inner circle.</p>
       <span class="status"><span class="dot live"></span>OpenSea</span>
     </a>
-
     <a href="https://opensea.io/collection/nomoz-crypto-tats" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">02</p>
       <h3 class="D proj-name">Crypto Tats</h3>
       <p class="proj-desc">Digital ink for the metaverse. High-fidelity tattoo art as tradable on-chain assets on Ethereum.</p>
       <span class="status"><span class="dot live"></span>OpenSea</span>
     </a>
-
     <a href="https://magiceden.io/ordinals/marketplace/bitcoin-crypto-tats" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">03</p>
       <h3 class="D proj-name">Bitcoin Tats</h3>
       <p class="proj-desc">Digital ink on the mother chain. High-fidelity tattoo art as tradable Ordinals on Bitcoin.</p>
       <span class="status"><span class="dot live"></span>Magic Eden</span>
     </a>
-
     <a href="https://opensea.io/collection/444-by-nomoz" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">04</p>
       <h3 class="D proj-name">The 444</h3>
       <p class="proj-desc">444 unique stories by NOMOZ. A deep dive into the lore and artistic expression of the collective.</p>
       <span class="status"><span class="dot live"></span>OpenSea Collection</span>
     </a>
-
     <a href="https://opensea.io/collection/ccc-records" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">05</p>
       <h3 class="D proj-name">CCC Records</h3>
       <p class="proj-desc">Web3 record label pushing the boundaries of music ownership and community-driven distribution.</p>
       <span class="status"><span class="dot live"></span>On-Chain Music</span>
     </a>
-
     <a href="https://open.spotify.com/show/5WbWm8y3zT1OdvqKOKDqIb" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">06</p>
       <h3 class="D proj-name">CAC Show</h3>
       <p class="proj-desc">The Crazy About Crypto podcast. Weekly deep dives into the alpha, the tech, and the culture of the space.</p>
       <span class="status"><span class="dot live"></span>Spotify / Apple</span>
     </a>
-
     <a href="https://www.cryptotats.io/" target="_blank" class="proj" style="grid-column:span 4;">
       <p class="proj-n">07</p>
       <h3 class="D proj-name">Tats Gallery</h3>
       <p class="proj-desc">A dedicated space to view the full gallery of Crypto Tats and explore the artistry behind the collection.</p>
       <span class="status"><span class="dot live"></span>Visit Gallery</span>
     </a>
-
   </div>
 </div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--              CARLTOONS SECTION              -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="carltoons" class="carltoons-section rv">
+
+  <div class="proj-head" style="padding-left:0; padding-right:0;">
+    <span class="lbl">— CarlToons Universe</span>
+    <h2 class="D sec-title">The <span style="color:var(--purple)">Pigeons</span></h2>
+  </div>
+
+  <!-- Main hero card -->
+  <div class="carltoons-hero">
+    <div class="carltoons-inner">
+
+      <!-- LEFT: text + features + CTA -->
+      <div>
+        <div class="ct-badge"><span class="dot" style="width:6px;height:6px;background:#c4a0ff;animation:bl 2s infinite;border-radius:50%;"></span>Now in Development</div>
+        <h2 class="D ct-title">HATCH.<br>BATTLE.<span class="p"><br>BREED.</span></h2>
+        <p class="ct-desc">
+          Welcome to <strong>The Tooniseum</strong> — a browser-based world where your pigeon is uniquely yours. Every bird is <strong>programmatically generated</strong>, meaning no two are alike. Feed it, train it, and send it to war.
+        </p>
+
+        <div class="ct-features">
+          <div class="ct-feat">
+            <div class="ct-feat-icon">🥚</div>
+            <div class="ct-feat-title">Hatch</div>
+            <div class="ct-feat-desc">Start with an egg. What comes out is all yours — traits, colors, and rarity determined on-chain.</div>
+          </div>
+          <div class="ct-feat">
+            <div class="ct-feat-icon">⚔️</div>
+            <div class="ct-feat-title">Battle</div>
+            <div class="ct-feat-desc">Take your pigeon into the Tooniseum and fight other birds for ranking and rewards.</div>
+          </div>
+          <div class="ct-feat">
+            <div class="ct-feat-icon">🧬</div>
+            <div class="ct-feat-title">Breed</div>
+            <div class="ct-feat-desc">Combine two pigeons to produce an offspring that inherits traits from both parents.</div>
+          </div>
+          <div class="ct-feat">
+            <div class="ct-feat-icon">🌐</div>
+            <div class="ct-feat-title">Own?</div>
+            <div class="ct-feat-desc">Your pigeon lives on an oldschool database for now, maybe we go onchain later.</div>
+          </div>
+        </div>
+
+        <div class="btns">
+          <a href="https://coo.wutju.com" target="_blank" class="btn btn-fill">Lick the egg! →</a>
+          <a href="https://coo.wutju.com" target="_blank" class="btn btn-out">coo.wutju.com</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: pigeon carousel -->
+      <div class="pigeon-side">
+        <div class="pigeon-showcase" id="pigeonShowcase">
+          <div class="pigeon-card pos-far-left"  data-idx="0"><img src="pigeon1.jpg" alt="Pigeon #1"></div>
+          <div class="pigeon-card pos-left2"      data-idx="1"><img src="pigeon2.jpg" alt="Pigeon #2"></div>
+          <div class="pigeon-card pos-left1"      data-idx="2"><img src="pigeon3.jpg" alt="Pigeon #3"></div>
+          <div class="pigeon-card pos-center"     data-idx="3"><img src="pigeon4.jpg" alt="Pigeon #4"></div>
+          <div class="pigeon-card pos-right1"     data-idx="4"><img src="pigeon5.jpg" alt="Pigeon #5"></div>
+          <div class="pigeon-card pos-right2"     data-idx="5"><img src="pigeon6.jpg" alt="Pigeon #6"></div>
+          <div class="pigeon-card pos-far-right"  data-idx="6"><img src="pigeon7.jpg" alt="Pigeon #7"></div>
+        </div>
+        <div class="pigeon-label">
+          <div class="plabel" id="pigeonName">Pigeon #4</div>
+          <div class="psub">You get what you get! Each one is unique</div>
+        </div>
+        <div class="pigeon-dots" id="pigeonDots">
+          <div class="pdot" data-i="0"></div>
+          <div class="pdot" data-i="1"></div>
+          <div class="pdot" data-i="2"></div>
+          <div class="pdot active" data-i="3"></div>
+          <div class="pdot" data-i="4"></div>
+          <div class="pdot" data-i="5"></div>
+          <div class="pdot" data-i="6"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Three mechanic cards -->
+  <div class="ct-mechanics">
+    <div class="mechanic">
+      <span class="mech-icon">🥚</span>
+      <div class="mech-title">Hatch Your Egg</div>
+      <p class="mech-desc">Every player starts with an egg. When you hatch it, the game generates a unique pigeon — traits, feather patterns, colors, and stats all determined programmatically. No two birds are the same.</p>
+      <span class="mech-tag">Step 1</span>
+    </div>
+    <div class="mechanic">
+      <span class="mech-icon">🏟️</span>
+      <div class="mech-title">Enter the Tooniseum</div>
+      <p class="mech-desc">The Tooniseum is the battle arena. Pit your pigeon against others in turn-based combat. Win fights to climb the leaderboard and earn rewards. Lose and go back to training.</p>
+      <span class="mech-tag">Step 2</span>
+    </div>
+    <div class="mechanic">
+      <span class="mech-icon">🧬</span>
+      <div class="mech-title">Breed & Evolve</div>
+      <p class="mech-desc">Two pigeons, one new bird. Breeding combines the trait pools of both parents to produce an offspring with inherited characteristics — and sometimes, rare mutations neither parent had.</p>
+      <span class="mech-tag">Step 3</span>
+    </div>
+  </div>
+
+</div>
+<!-- ═══════════════════════════════════════════ -->
 
 <!-- CTA -->
 <div class="cta rv" id="join">
@@ -601,15 +908,52 @@
     <a href="https://discord.gg/9ymqJxb7fu" target="_blank">Discord</a>
     <a href="https://twitter.com/CrazyCryptoCarl" target="_blank">Twitter / X</a>
     <a href="https://linktr.ee/CrazyCarlCollective" target="_blank">Linktree</a>
+    <a href="https://coo.wutju.com" target="_blank">The Pigeons 🐦</a>
   </div>
   <p class="fcopy">© Crazy Carls Collective · Built by Carls</p>
 </footer>
 
 <script>
+  // ── Scroll reveal ──
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.07 });
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // ── Pigeon carousel ──
+  const positions = ['pos-far-left','pos-left2','pos-left1','pos-center','pos-right1','pos-right2','pos-far-right'];
+  const cards     = Array.from(document.querySelectorAll('.pigeon-card'));
+  const dots      = Array.from(document.querySelectorAll('.pdot'));
+  const nameEl    = document.getElementById('pigeonName');
+  let center = 3; // index of the centered pigeon (0-based within cards array)
+
+  function rotateTo(newCenter) {
+    center = ((newCenter % 7) + 7) % 7;
+    cards.forEach((card, i) => {
+      // distance from center in circular space
+      let d = i - center;
+      if (d < -3) d += 7;
+      if (d >  3) d -= 7;
+      // map distance -3..3 to position index 0..6
+      const posIdx = d + 3;
+      card.className = 'pigeon-card ' + positions[posIdx];
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === center));
+    nameEl.textContent = 'Pigeon #' + (center + 1);
+  }
+
+  // click any card → bring to center
+  cards.forEach((card, i) => {
+    card.addEventListener('click', () => rotateTo(i));
+  });
+
+  // dot click
+  dots.forEach(d => {
+    d.addEventListener('click', () => rotateTo(parseInt(d.dataset.i)));
+  });
+
+  // auto-rotate every 3s
+  setInterval(() => rotateTo(center + 1), 3000);
 </script>
 
 </body>
